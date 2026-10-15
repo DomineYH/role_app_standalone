@@ -7,7 +7,7 @@
 <div class="workspace"><div class="settings"><section class="panel"><div class="section-head"><h2>01 · 참여 학생</h2><span id="student-count">20명</span></div><p class="hint">체크를 끄면 이번 배정에서 제외합니다.</p><div class="row compact"><button id="select-all" class="text-button">모두 선택</button><button id="select-none" class="text-button">모두 해제</button></div><div id="students" class="students"></div></section>
 <section class="panel"><div class="section-head"><h2>02 · 역할과 정원</h2><span id="capacity-count">20명</span></div><p class="hint">참여 인원과 정원 합계가 같아야 합니다. 사용하지 않는 역할은 0명으로 둡니다.</p><div id="roles" class="roles"></div><label class="avoid"><input id="avoid-previous" type="checkbox"> 직전 확정 역할 피하기</label><p class="small" id="history-label">직전 확정 기록이 없습니다.</p><button class="text-button" id="clear-history">직전 기록 지우기</button><div class="actions"><button id="assign" class="primary">역할 배정</button></div><p class="small">청소·우유 운반 등은 교사의 지도 아래 안전한 범위에서 활동합니다. 무작위 배정이 장기적인 공정성까지 보장하지는 않습니다.</p></section></div>
 <section class="panel results-panel"><div class="section-head"><h2>03 · 배정 결과</h2><span id="result-state">대기</span></div><div id="result-summary" class="hint">배정 버튼을 누르면 검토안이 표시됩니다.</div><div id="results" class="results"><div class="empty"><div>↗</div><h3>규칙을 정한 뒤 배정하세요.</h3><p>중복과 누락을 먼저 확인한 후 확정합니다.</p></div></div><div class="result-actions"><button id="confirm" disabled>이 결과 확정</button><button id="csv" class="secondary" disabled>CSV 저장</button><button id="print-results" class="secondary" disabled>역할표 인쇄</button></div><p class="small">확정은 이 화면의 직전 역할 기록만 갱신합니다. 이미 확정한 결과를 다시 확정할 수 없습니다.</p></section></div>
-<section class="panel howto"><h2>검사해 보세요</h2><p>① 20명 배정: 중복·누락 0명　② 학생 한 명 해제: 정원 불일치로 중단　③ 정원도 19명으로 수정: 정상 배정　④ 결과 확정 후 직전 역할 피하기: 이전 역할과 비교</p></section></main><footer>순수 HTML · CSS · JavaScript / 빌드·가입·비밀키 없이 기본 실습 가능<br>교사 워크숍 · 2026.10.11</footer><script>/* 교사 워크숍용 배정 엔진. 브라우저와 Node.js 검사에서 같은 코드를 사용합니다. */
+<section class="panel howto"><h2>검사해 보세요</h2><p>① 20명 배정: 중복·누락 0명 ② 학생 한 명 해제: 정원 불일치로 중단 ③ 정원도 19명으로 수정: 정상 배정 ④ 결과 확정 후 직전 역할 피하기: 이전 역할과 비교</p></section></main><footer>순수 HTML · CSS · JavaScript / 빌드·가입·비밀키 없이 기본 실습 가능<br>교사 워크숍 · 2026.10.11</footer><script>/* 교사 워크숍용 배정 엔진. 브라우저와 Node.js 검사에서 같은 코드를 사용합니다. */
 (function (root, factory) {
   'use strict';
   if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -105,17 +105,18 @@
       throw new ValidationError('CONTRACT', '공개 가상 자료 20명의 응답 형식이 아닙니다.');
     const ids = new Set();
     return data.students.map(s => {
-      if (!s || typeof s.id !== 'string' || typeof s.name !== 'string' || !/^S(?:0[1-9]|1[0-9]|20)$/.test(s.id)
-          || s.name !== '가상' + s.id.slice(1) || Object.keys(s).some(k => !['id', 'name'].includes(k)))
+      const name = s && typeof s.name === 'string' ? s.name.trim() : '';
+      if (!s || typeof s.id !== 'string' || !name || name.length > 60 || !/^S(?:0[1-9]|1[0-9]|20)$/.test(s.id)
+          || Object.keys(s).some(k => !['id', 'name'].includes(k)))
         throw new ValidationError('DEMO_ONLY', '이 실습은 제공된 가상 학생ID와 표시명만 허용합니다.');
       if (ids.has(s.id)) throw new ValidationError('DUPLICATE', '중복된 학생ID가 있습니다.');
-      ids.add(s.id); return { id: s.id, name: s.name };
+      ids.add(s.id); return { id: s.id, name: name };
     });
   }
   function endpoint(raw) {
     let u; try { u = new URL(raw.trim()); } catch (_) { throw new ValidationError('URL', '올바른 Apps Script /exec 주소를 입력하세요.'); }
     if (u.protocol !== 'https:' || u.hostname !== 'script.google.com' || u.port || u.username || u.password
-        || !/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(u.pathname) || u.search || u.hash)
+        || !/^(?:\/a\/macros\/[^/]+)?\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(u.pathname) || u.search || u.hash)
       throw new ValidationError('URL', 'https://script.google.com/macros/s/배포ID/exec 형식의 주소만 사용하세요.');
     return u.href;
   }
@@ -168,8 +169,7 @@
     $('results').replaceChildren();
     if (!candidate) {
       const empty = document.createElement('div'); empty.className = 'empty'; const title = document.createElement('h3'), p = document.createElement('p');
-      title.textContent = '규칙을 정한 뒤 배정하세요.'; p.textContent = '중복과 누락을 확인한 후 확정합니다.'; empty.append(title, p); $('results').append(empty);
-      $('result-summary').textContent = '배정 버튼을 누르면 검토안이 표시됩니다.'; return;
+      title.textContent = '규칙을 정한 뒤 배정하세요.'; p.textContent = '중복과 누락을 확인한 후 확정합니다.'; empty.append(title, p); $('results').append(empty);$('result-summary').textContent = '배정 버튼을 누르면 검토안이 표시됩니다.'; return;
     }
     const total = candidate.reduce((n, g) => n + g.students.length, 0);
     $('result-summary').textContent = `배정 ${total}명 · 중복 0명 · 누락 0명 · 정원 일치 · ${confirmed ? '확정 완료' : '검토 후 확정하세요'}`;
