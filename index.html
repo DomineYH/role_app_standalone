@@ -1,0 +1,241 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>우리 반 역할분담 · 가상 데이터 실습</title><style>:root{--ink:#142942;--muted:#586b7e;--blue:#255bcb;--soft:#edf3ff;--line:#d6e0ed;--bg:#f4f6fa}*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans CJK KR","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}button,input{font:inherit}button{border:1px solid var(--blue);border-radius:10px;background:var(--blue);color:white;padding:11px 17px;cursor:pointer;font-weight:700}button:hover{filter:brightness(.95)}button:disabled{opacity:.45;cursor:not-allowed}button.secondary{background:white;color:var(--blue);border-color:#b9cce9}.text-button{font-size:12px;background:transparent;border:0;padding:5px;color:var(--blue)}input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue);flex-shrink:0}input[type=url],input[type=text],input[type=number]{background:#fff;border:1px solid #b5c6dc;border-radius:8px;padding:9px;min-width:0}input:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d79e44;outline-offset:3px}.hero{background:#122946;color:#fff;padding:40px max(25px,calc((100vw - 1200px)/2));}.eyebrow{letter-spacing:1.5px;font-size:12px;color:#c4d3ea}.hero h1{font-size:40px;letter-spacing:-1.5px;margin:8px 0}.hero p{color:#d3e1f4;margin:0}.badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.badges span{border:1px solid #617b9c;border-radius:20px;font-size:12px;padding:4px 11px}.badges span:first-child{background:#e4edff;color:#163a71;border-color:#e4edff}main{max-width:1244px;margin:auto;padding:26px 22px}.safety{background:#fff9ec;border:1px solid #e4cc9c;border-radius:16px;padding:15px 20px;margin-bottom:18px}.safety strong{color:#75501a}.safety p{margin:5px 0 0;font-size:13px}.connection{background:white;border:1px solid var(--line);border-radius:16px;padding:17px 20px;margin-bottom:18px}.connection summary{font-weight:700;cursor:pointer}.connection p{font-size:13px;color:var(--muted)}.connection input[type=url]{width:100%;margin:7px 0}.full-label{display:block;font-weight:700;font-size:13px}.consent{display:flex;align-items:center;gap:10px;margin:13px 0;font-size:13px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.status{background:#e8f0fd;border:1px solid #c6d8f5;border-radius:13px;padding:15px 18px;margin:18px 0;font-size:14px}.status.error{background:#fff0eb;border-color:#dbae9c;color:#8a3820}.status.success{background:#eaf4ee;border-color:#b5d9c5;color:#235d40}.workspace{display:grid;grid-template-columns:minmax(325px,.85fr) minmax(0,1.25fr);gap:23px;align-items:start}.settings{display:flex;flex-direction:column;gap:20px}.panel{background:white;border:1px solid var(--line);border-radius:19px;padding:23px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.section-head h2{font-size:19px;margin:0}.section-head>span{font-size:12px;color:var(--blue);background:var(--soft);border-radius:14px;padding:3px 9px;white-space:nowrap}.hint{color:var(--muted);font-size:12px;margin:9px 0 14px}.students{display:grid;grid-template-columns:1fr 1fr;gap:7px}.students label{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:9px;padding:8px;font-size:14px}.students label small{font-size:10px;color:var(--muted);margin-left:auto}.roles{display:flex;flex-direction:column;gap:8px}.role-row{display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:10px}.role-row input{width:100%;font-size:13px}.role-row input[type=number]{text-align:center}.avoid{display:flex;align-items:center;gap:9px;font-weight:700;margin-top:19px;font-size:14px}.small{font-size:11px;color:var(--muted);line-height:1.8;margin:7px 0 0}.actions{display:flex;margin:18px 0 12px}.primary{width:100%;font-size:17px;padding:14px}.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.role-result{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fcfdff}.role-result h3{font-size:15px;margin:0 0 12px;display:flex;gap:8px;justify-content:space-between;align-items:flex-start;overflow-wrap:anywhere}.role-result h3 span{font-size:10px;color:var(--muted);white-space:nowrap}.role-result ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}.role-result li{font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px dashed #d7e2ef;padding-top:6px}.role-result small{font-size:10px;color:var(--muted)}.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:65px 15px}.empty>div{font-size:53px;color:#b0c7ed}.empty h3{font-size:19px}.empty p{font-size:13px}.result-actions{display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}.result-actions button{font-size:12px}.howto{margin-top:22px}.howto h2{font-size:18px;margin:0 0 12px}.howto p{font-size:13px;margin:0}footer{text-align:center;padding:18px 20px 36px;font-size:11px;color:var(--muted)}@media(max-width:800px){.workspace{grid-template-columns:1fr}.hero{padding:28px 22px}.hero h1{font-size:31px}.results{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:18px}main{padding:16px}.role-result{padding:12px}}@media(max-width:390px){.students{grid-template-columns:1fr}.results{grid-template-columns:1fr}}@page{size:A4 portrait;margin:15mm}@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:#fff;font-size:11pt}.hero{padding:0 0 6mm;background:white;color:#122946}.hero h1{font-size:25pt}.hero p{color:#324761}.hero .eyebrow{color:#324761}.badges,.safety,.connection,.settings,.status,.result-actions,.howto,footer{display:none!important}main{padding:0}.workspace{display:block}.panel{border:0;padding:0}.results{grid-template-columns:repeat(3,minmax(0,1fr));gap:4mm;margin:5mm 0}.role-result{break-inside:avoid;padding:3mm}.role-result h3{font-size:11pt}.role-result li{font-size:10pt}.small{font-size:8pt}.section-head h2{font-size:15pt}}
+</style></head><body>
+<header class="hero"><div class="eyebrow">교사를 위한 작은 앱 / 실습 05</div><h1>우리 반 역할분담</h1><p>규칙을 정하고, 배정하고, 직접 확인합니다.</p><div class="badges"><span id="source-badge">내장 가상 자료</span><span>외부 AI 호출 없음</span><span>성별 기준 배정 없음</span></div></header>
+<main><section class="safety"><strong>가상 자료 전용 학습 앱</strong><p>실제 학생 정보를 넣지 마세요. 확정 결과와 직전 역할은 이 화면의 메모리에만 남으며, 새로고침하면 사라집니다. 시트에 쓰지 않습니다.</p></section>
+<details class="connection"><summary>선택 실습 · 내 Apps Script의 가상 명단 읽기</summary><p>제공된 Code.gs로 만든 본인 소유의 공개 읽기 전용 API만 연결하세요. JSONP는 외부 JavaScript를 실행하므로, 다른 사람이 준 주소를 연결하지 마세요.</p><label class="full-label" for="api-url">배포한 웹 앱 주소 (/exec)</label><input id="api-url" type="url" autocomplete="off" spellcheck="false" maxlength="300" placeholder="https://script.google.com/macros/s/배포ID/exec"><label class="consent"><input id="api-consent" type="checkbox"> 본인이 검토한 Code.gs이며 공개 가상 자료만 반환함을 확인했습니다.</label><div class="row"><button id="load-api">가상 시트 읽기</button><button class="secondary" id="load-demo">내장 예시로 돌아가기</button></div><p class="small">성명·성별은 응답에 포함하지 않습니다. 학교 계정에서 익명 공개가 제한되면 우회하지 말고 내장 예시로 실습하세요.</p></details>
+<div id="status" class="status" role="status" aria-live="polite">내장 가상 학생 20명을 불러왔습니다. 역할 정원을 확인하고 배정하세요.</div>
+<div class="workspace"><div class="settings"><section class="panel"><div class="section-head"><h2>01 · 참여 학생</h2><span id="student-count">20명</span></div><p class="hint">체크를 끄면 이번 배정에서 제외합니다.</p><div class="row compact"><button id="select-all" class="text-button">모두 선택</button><button id="select-none" class="text-button">모두 해제</button></div><div id="students" class="students"></div></section>
+<section class="panel"><div class="section-head"><h2>02 · 역할과 정원</h2><span id="capacity-count">20명</span></div><p class="hint">참여 인원과 정원 합계가 같아야 합니다. 사용하지 않는 역할은 0명으로 둡니다.</p><div id="roles" class="roles"></div><label class="avoid"><input id="avoid-previous" type="checkbox"> 직전 확정 역할 피하기</label><p class="small" id="history-label">직전 확정 기록이 없습니다.</p><button class="text-button" id="clear-history">직전 기록 지우기</button><div class="actions"><button id="assign" class="primary">역할 배정</button></div><p class="small">청소·우유 운반 등은 교사의 지도 아래 안전한 범위에서 활동합니다. 무작위 배정이 장기적인 공정성까지 보장하지는 않습니다.</p></section></div>
+<section class="panel results-panel"><div class="section-head"><h2>03 · 배정 결과</h2><span id="result-state">대기</span></div><div id="result-summary" class="hint">배정 버튼을 누르면 검토안이 표시됩니다.</div><div id="results" class="results"><div class="empty"><div>↗</div><h3>규칙을 정한 뒤 배정하세요.</h3><p>중복과 누락을 먼저 확인한 후 확정합니다.</p></div></div><div class="result-actions"><button id="confirm" disabled>이 결과 확정</button><button id="csv" class="secondary" disabled>CSV 저장</button><button id="print-results" class="secondary" disabled>역할표 인쇄</button></div><p class="small">확정은 이 화면의 직전 역할 기록만 갱신합니다. 이미 확정한 결과를 다시 확정할 수 없습니다.</p></section></div>
+<section class="panel howto"><h2>검사해 보세요</h2><p>① 20명 배정: 중복·누락 0명　② 학생 한 명 해제: 정원 불일치로 중단　③ 정원도 19명으로 수정: 정상 배정　④ 결과 확정 후 직전 역할 피하기: 이전 역할과 비교</p></section></main><footer>순수 HTML · CSS · JavaScript / 빌드·가입·비밀키 없이 기본 실습 가능<br>교사 워크숍 · 2026.10.11</footer><script>/* 교사 워크숍용 배정 엔진. 브라우저와 Node.js 검사에서 같은 코드를 사용합니다. */
+(function (root, factory) {
+  'use strict';
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.RoleCore = factory();
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  class ValidationError extends Error {
+    constructor(code, message) { super(message); this.name = 'ValidationError'; this.code = code; }
+  }
+  function shuffle(input, rng = Math.random) {
+    const a = [...input];
+    for (let i = a.length - 1; i > 0; i--) {
+      const r = rng();
+      if (!(r >= 0 && r < 1)) throw new ValidationError('RNG', '난수 입력이 올바르지 않습니다.');
+      const j = Math.floor(r * (i + 1)); [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  function validate(students, roles) {
+    if (!Array.isArray(students) || students.length < 1 || students.length > 60)
+      throw new ValidationError('STUDENTS', '참여 학생은 1~60명이어야 합니다.');
+    const ids = new Set();
+    students.forEach(s => {
+      if (!s || typeof s.id !== 'string' || typeof s.name !== 'string' || !s.id.trim() || !s.name.trim())
+        throw new ValidationError('STUDENT', '학생ID와 표시명이 필요합니다.');
+      if (s.id.length > 40 || s.name.length > 60) throw new ValidationError('STUDENT', '학생 값이 너무 깁니다.');
+      if (ids.has(s.id)) throw new ValidationError('DUPLICATE', '중복된 학생ID가 있습니다.');
+      ids.add(s.id);
+    });
+    if (!Array.isArray(roles) || roles.length < 1 || roles.length > 30)
+      throw new ValidationError('ROLES', '역할은 1~30개여야 합니다.');
+    const roleIds = new Set(), names = new Set(); let total = 0;
+    roles.forEach(r => {
+      if (!r || typeof r.id !== 'string' || !r.id || typeof r.name !== 'string' || !r.name.trim() || r.name.length > 40)
+        throw new ValidationError('ROLE', '역할 이름을 1~40자로 입력하세요.');
+      if (roleIds.has(r.id) || names.has(r.name.trim())) throw new ValidationError('ROLE_DUPLICATE', '역할ID와 역할 이름은 중복될 수 없습니다.');
+      roleIds.add(r.id); names.add(r.name.trim());
+      if (!Number.isInteger(r.count) || r.count < 0 || r.count > 60)
+        throw new ValidationError('CAPACITY', '역할 정원은 0~60의 정수여야 합니다.');
+      total += r.count;
+    });
+    if (total !== students.length)
+      throw new ValidationError('TOTAL', `참여 ${students.length}명과 정원 ${total}명이 다릅니다. ${Math.abs(total - students.length)}명을 조정하세요.`);
+    return total;
+  }
+  function assign(students, roles, previous = {}, avoidPrevious = false, rng = Math.random) {
+    validate(students, roles);
+    const people = shuffle(students, rng);
+    const slots = roles.flatMap(r => Array.from({ length: r.count }, () => r));
+    let allocation;
+    if (!avoidPrevious) allocation = slots.map((r, i) => ({ role: r, student: people[i] }));
+    else {
+      // 이분 매칭: 직전 역할을 제외한 자리만 탐색합니다. 불가능하면 명시적으로 중단합니다.
+      const order = shuffle(slots.map((_, i) => i), rng);
+      const allowed = people.map(s => order.filter(j => previous[s.id] !== slots[j].id));
+      const occupied = Array(slots.length).fill(-1);
+      function augment(person, seen) {
+        for (const slot of allowed[person]) {
+          if (seen[slot]) continue; seen[slot] = true;
+          if (occupied[slot] === -1 || augment(occupied[slot], seen)) {
+            occupied[slot] = person; return true;
+          }
+        }
+        return false;
+      }
+      for (let i = 0; i < people.length; i++) {
+        if (!augment(i, Array(slots.length).fill(false)))
+          throw new ValidationError('IMPOSSIBLE', '현재 정원에서는 모든 학생의 직전 역할을 피할 수 없습니다. 정원을 조정하거나 해당 조건을 해제하세요.');
+      }
+      allocation = slots.map((r, i) => ({ role: r, student: people[occupied[i]] }));
+    }
+    const groups = roles.filter(r => r.count > 0).map(r => ({
+      id: r.id, name: r.name, count: r.count,
+      students: allocation.filter(a => a.role.id === r.id).map(a => ({ id: a.student.id, name: a.student.name }))
+    }));
+    const all = groups.flatMap(g => g.students.map(s => s.id));
+    if (all.length !== students.length || new Set(all).size !== students.length || groups.some(g => g.students.length !== g.count))
+      throw new ValidationError('INVARIANT', '배정 결과 검증에 실패했습니다. 결과를 사용하지 마세요.');
+    return groups;
+  }
+  function history(groups) { return Object.fromEntries(groups.flatMap(g => g.students.map(s => [s.id, g.id]))); }
+  function csvCell(value) {
+    let s = String(value);
+    // 스프레드시트에서 편집한 역할 이름이 수식으로 실행되지 않도록 보호합니다.
+    if (/^[\s]*[=+@-]/.test(s) || /^[\t\r\n]/.test(s)) s = "'" + s;
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  function toCSV(groups, confirmed) {
+    const rows = [['역할', '학생ID', '표시명', '상태']];
+    groups.forEach(g => g.students.forEach(s => rows.push([g.name, s.id, s.name, confirmed ? '확정' : '검토안'])));
+    return '\ufeff' + rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+  }
+  function validateDemo(data) {
+    if (!data || data.ok !== true || data.demo !== true || !Array.isArray(data.students) || data.students.length !== 20)
+      throw new ValidationError('CONTRACT', '공개 가상 자료 20명의 응답 형식이 아닙니다.');
+    const ids = new Set();
+    return data.students.map(s => {
+      if (!s || typeof s.id !== 'string' || typeof s.name !== 'string' || !/^S(?:0[1-9]|1[0-9]|20)$/.test(s.id)
+          || s.name !== '가상' + s.id.slice(1) || Object.keys(s).some(k => !['id', 'name'].includes(k)))
+        throw new ValidationError('DEMO_ONLY', '이 실습은 제공된 가상 학생ID와 표시명만 허용합니다.');
+      if (ids.has(s.id)) throw new ValidationError('DUPLICATE', '중복된 학생ID가 있습니다.');
+      ids.add(s.id); return { id: s.id, name: s.name };
+    });
+  }
+  function endpoint(raw) {
+    let u; try { u = new URL(raw.trim()); } catch (_) { throw new ValidationError('URL', '올바른 Apps Script /exec 주소를 입력하세요.'); }
+    if (u.protocol !== 'https:' || u.hostname !== 'script.google.com' || u.port || u.username || u.password
+        || !/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(u.pathname) || u.search || u.hash)
+      throw new ValidationError('URL', 'https://script.google.com/macros/s/배포ID/exec 형식의 주소만 사용하세요.');
+    return u.href;
+  }
+  return { ValidationError, shuffle, validate, assign, history, toCSV, csvCell, validateDemo, endpoint };
+});
+</script><script>/* 화면 상태와 사용자 입력을 관리합니다. 실제 학생 정보는 처리하지 않습니다. */
+(() => {
+  'use strict';
+  const C = window.RoleCore, $ = id => document.getElementById(id);
+  const DEMO = Array.from({ length: 20 }, (_, i) => ({ id: 'S' + String(i + 1).padStart(2, '0'), name: '가상' + String(i + 1).padStart(2, '0') }));
+  const DEFAULT_ROLES = ['교실청소', '우유 가져오기', '분리배출', '칠판 정리', '책 정리', '자료 배부', '식물 돌보기', '창문·조명 확인', '준비물 정리'].map((name, i) => ({ id: 'r' + (i + 1), name, count: i === 0 ? 4 : 2 }));
+  let students = DEMO.map(s => ({ ...s })), selected = new Set(students.map(s => s.id));
+  let roles = DEFAULT_ROLES.map(r => ({ ...r })), previous = {}, candidate = null, confirmed = false, busy = false;
+  function status(message, type = '') { $('status').textContent = message; $('status').className = 'status ' + type; }
+  function historyLabel() { $('history-label').textContent = Object.keys(previous).length ? `직전 확정 기록 ${Object.keys(previous).length}명 · 새로고침 시 사라짐` : '직전 확정 기록이 없습니다.'; }
+  function count() {
+    $('student-count').textContent = selected.size + '명';
+    const total = roles.reduce((n, r) => n + r.count, 0);
+    $('capacity-count').textContent = Number.isFinite(total) ? total + '명' : '입력 확인';
+  }
+  function clearCandidate(message) {
+    candidate = null; confirmed = false; renderResults();
+    if (message) status(message);
+  }
+  function renderStudents() {
+    $('students').replaceChildren();
+    students.forEach(s => {
+      const label = document.createElement('label'), check = document.createElement('input'), name = document.createElement('span'), id = document.createElement('small');
+      check.type = 'checkbox'; check.checked = selected.has(s.id); check.dataset.id = s.id;
+      name.textContent = s.name; id.textContent = s.id;
+      check.addEventListener('change', () => { check.checked ? selected.add(s.id) : selected.delete(s.id); count(); clearCandidate('참여 명단이 바뀌었습니다. 정원을 확인한 뒤 다시 배정하세요.'); });
+      label.append(check, name, id); $('students').append(label);
+    });
+    count();
+  }
+  function renderRoles() {
+    $('roles').replaceChildren();
+    roles.forEach((r, i) => {
+      const row = document.createElement('div'), name = document.createElement('input'), number = document.createElement('input'); row.className = 'role-row';
+      name.type = 'text'; name.value = r.name; name.maxLength = 40; name.setAttribute('aria-label', `${i + 1}번 역할 이름`);
+      number.type = 'number'; number.value = r.count; number.min = '0'; number.max = '60'; number.step = '1'; number.setAttribute('aria-label', `${i + 1}번 역할 정원`);
+      name.addEventListener('input', () => { r.name = name.value.trim(); previous = {}; historyLabel(); clearCandidate('역할 이름이 바뀌어 직전 기록과 검토안을 지웠습니다.'); });
+      number.addEventListener('input', () => { r.count = number.value.trim() === '' ? NaN : Number(number.value); count(); clearCandidate('정원이 바뀌었습니다. 인원을 확인한 뒤 다시 배정하세요.'); });
+      row.append(name, number); $('roles').append(row);
+    }); count();
+  }
+  function renderResults() {
+    $('confirm').disabled = !candidate || confirmed; $('csv').disabled = !candidate; $('print-results').disabled = !candidate;
+    $('result-state').textContent = candidate ? (confirmed ? '확정' : '검토안') : '대기';
+    $('results').replaceChildren();
+    if (!candidate) {
+      const empty = document.createElement('div'); empty.className = 'empty'; const title = document.createElement('h3'), p = document.createElement('p');
+      title.textContent = '규칙을 정한 뒤 배정하세요.'; p.textContent = '중복과 누락을 확인한 후 확정합니다.'; empty.append(title, p); $('results').append(empty);
+      $('result-summary').textContent = '배정 버튼을 누르면 검토안이 표시됩니다.'; return;
+    }
+    const total = candidate.reduce((n, g) => n + g.students.length, 0);
+    $('result-summary').textContent = `배정 ${total}명 · 중복 0명 · 누락 0명 · 정원 일치 · ${confirmed ? '확정 완료' : '검토 후 확정하세요'}`;
+    candidate.forEach(g => {
+      const card = document.createElement('article'); card.className = 'role-result'; const h = document.createElement('h3'), count = document.createElement('span'), list = document.createElement('ul');
+      h.textContent = g.name; count.textContent = g.students.length + '명'; h.append(count);
+      g.students.forEach(s => { const li = document.createElement('li'), name = document.createElement('span'), id = document.createElement('small'); name.textContent = s.name; id.textContent = s.id; li.append(name, id); list.append(li); });
+      card.append(h, list); $('results').append(card);
+    });
+  }
+  $('assign').addEventListener('click', () => {
+    try {
+      candidate = C.assign(students.filter(s => selected.has(s.id)), roles, previous, $('avoid-previous').checked);
+      confirmed = false; renderResults(); status('검토안을 만들었습니다. 학생과 역할을 확인하고 확정하세요.', 'success');
+    } catch (e) { clearCandidate(); status(e.message || '배정에 실패했습니다.', 'error'); }
+  });
+  $('confirm').addEventListener('click', () => {
+    if (!candidate || confirmed) return;
+    previous = C.history(candidate); confirmed = true; historyLabel(); renderResults(); status('이 결과를 확정했습니다. 직전 역할 기록은 이 화면에만 보관됩니다.', 'success');
+  });
+  $('avoid-previous').addEventListener('change', () => clearCandidate('배정 조건이 바뀌었습니다. 다시 배정하세요.'));
+  $('clear-history').addEventListener('click', () => { previous = {}; historyLabel(); clearCandidate('직전 확정 기록을 지웠습니다.'); });
+  $('select-all').addEventListener('click', () => { selected = new Set(students.map(s => s.id)); renderStudents(); clearCandidate('모두 선택했습니다. 정원을 확인하세요.'); });
+  $('select-none').addEventListener('click', () => { selected.clear(); renderStudents(); clearCandidate('참여 학생을 모두 해제했습니다.'); });
+  $('csv').addEventListener('click', () => {
+    if (!candidate) return;
+    const blob = new Blob([C.toCSV(candidate, confirmed)], { type: 'text/csv;charset=utf-8' }), u = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = u; a.download = 'role_assignment_' + (confirmed ? 'confirmed' : 'draft') + '.csv'; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 1000);
+  });
+  $('print-results').addEventListener('click', () => { if (candidate) window.print(); });
+  function setStudents(list, source) {
+    students = list; selected = new Set(list.map(s => s.id)); previous = {}; historyLabel(); clearCandidate(); renderStudents(); $('source-badge').textContent = source;
+  }
+  $('load-demo').addEventListener('click', () => { if (busy) return; setStudents(DEMO.map(s => ({ ...s })), '내장 가상 자료'); status('내장 예시로 돌아왔습니다. 정원 설정은 유지되며 직전 기록은 지워졌습니다.'); });
+  function jsonp(url, timeout = 12000) {
+    return new Promise((resolve, reject) => {
+      const random = new Uint32Array(2); crypto.getRandomValues(random);
+      const cb = '__vc_' + Date.now().toString(36) + '_' + random[0].toString(36) + random[1].toString(36);
+      const script = document.createElement('script'); let done = false;
+      const finish = (error, value) => {
+        if (done) return; done = true; clearTimeout(timer); script.remove();
+        // 이미 진행 중인 늦은 응답이 도착해도 현재 자료를 변경하지 않게 합니다.
+        window[cb] = () => {}; setTimeout(() => { delete window[cb]; }, 60000);
+        error ? reject(error) : resolve(value);
+      };
+      window[cb] = data => finish(null, data);
+      script.onerror = () => finish(new Error('연결에 실패했습니다. /exec 주소와 익명 접근 권한을 확인하세요.'));
+      const timer = setTimeout(() => finish(new Error('12초 동안 응답이 없습니다. 주소·배포 버전·권한을 확인하세요.')), timeout);
+      script.src = url + '?action=students&callback=' + encodeURIComponent(cb); script.referrerPolicy = 'no-referrer'; document.head.append(script);
+    });
+  }
+  $('load-api').addEventListener('click', async () => {
+    if (busy) return;
+    let url;
+    try {
+      if (!$('api-consent').checked) throw new Error('본인이 만든 공개 가상 자료 API인지 먼저 확인하세요.');
+      url = C.endpoint($('api-url').value);
+    } catch (e) { status(e.message, 'error'); return; }
+    busy = true; $('load-api').disabled = true; $('load-demo').disabled = true; status('가상 시트 명단을 불러오는 중입니다. 현재 자료는 아직 유지합니다.');
+    try {
+      const raw = await jsonp(url);
+      if (raw && raw.ok === false) throw new Error('API가 자료를 거절했습니다. 학생 시트의 제목·헤더·20명 가상 자료와 setupDemo 실행 여부를 확인하세요.');
+      const list = C.validateDemo(raw); setStudents(list, '내 Apps Script · 가상 자료'); status('가상 시트 20명을 확인했습니다. 성명·성별은 가져오지 않았습니다.', 'success');
+    } catch (e) { status((e.message || '명단 읽기에 실패했습니다.') + ' 기존 자료는 유지합니다.', 'error'); }
+    finally { busy = false; $('load-api').disabled = false; $('load-demo').disabled = false; }
+  });
+  renderStudents(); renderRoles(); renderResults(); historyLabel();
+})();
+</script></body></html>
